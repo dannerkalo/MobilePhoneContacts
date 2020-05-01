@@ -23,8 +23,8 @@ class PhoneContact {
     }
 
     // Create contact
-    public static PhoneContact createPhoneContact(String contactPhone, String contactName) {
-        return new PhoneContact(contactPhone, contactName);
+    public static PhoneContact createPhoneContact(String contactName, String contactPhone) {
+        return new PhoneContact(contactName, contactPhone);
 
     }
 }

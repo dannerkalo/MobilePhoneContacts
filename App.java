@@ -20,23 +20,45 @@ class App {
             switch(action){
                 case 0:
                 System.out.println("\nShutting down...");
+                quit = true;
                 break;
                 case 1:
+                mobilephone.printPhoneContacts();
                 break;
                 case 2:
+                addNewPhoneContact();
                 break;
                 case 3:
+                updatePhoneContact();
                 break;
                 case 4:
+                removePhoneContact();
                 break;
                 case 5:
+                queryPhoneContact();
                 break;
                 case 6:
+                printActions();
                 break;
             }
         }
 
     }
+
+    //Add new Phone contact
+    private static void addNewPhoneContact(){
+        System.out.println("Enter new contact name: ");
+        String name = scanner.nextLine();
+        System.out.println("Enter phone number: ");
+        String phone = scanner.nextLine();
+        PhoneContact newPhoneContact = PhoneContact.createPhoneContact(name, phone);
+        if(mobilephone.addNewPhoneContact(newPhoneContact)){
+            System.out.println("New contact added: Name = " + name + ", & Phone: " + phone);
+        }else{
+            System.out.println("Unable to add this: Name = " + name + " and Phone = " + phone);
+        }
+    }
+
 
 
     private static void startPhone() {
