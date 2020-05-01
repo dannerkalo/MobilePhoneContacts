@@ -59,6 +59,29 @@ class App {
         }
     }
 
+    //Update if contact exists 
+    private static void updatePhoneContact(){
+        System.out.println("Enter existing contact name: ");
+        String name = scanner.nextLine();
+        PhoneContact existingCountactrecordFound = mobilephone.queryPhoneContact(name);
+        if(existingCountactrecordFound == null){
+            System.out.println("Nothing found.");
+            return;
+        }
+
+        System.out.print("Enter new contact name: ");
+        String newName = scanner.nextLine();
+        System.out.println("Enter a new contact phone number: ");
+        String newNumber = scanner.nextLine();
+        PhoneContact newPhoneContact = PhoneContact.createPhoneContact(newName, newNumber);
+        if(mobilephone.updatePhoneContact(existingCountactrecordFound, newPhoneContact)){
+            System.out.println("Succesfully updated");
+        }else{
+            System.out.println("Error updating record!");
+        }
+    
+    }
+
 
 
     private static void startPhone() {
