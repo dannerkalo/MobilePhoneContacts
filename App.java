@@ -99,6 +99,19 @@ class App {
         }
     }
 
+    //remove method
+    private static void queryPhoneContact(){
+        System.out.println("Enter existing contact name: ");
+        String name = scanner.nextLine();
+        PhoneContact existingCountactrecordFound = mobilephone.queryPhoneContact(name);
+        if(existingCountactrecordFound == null){
+            System.out.println("Contact found.");
+            return;
+        }
+        System.out.println("Name: " + existingCountactrecordFound.getContactName());
+        System.out.println("Phone number is " + existingCountactrecordFound.getPhoneNumber());
+    }
+
 
 
     private static void startPhone() {
