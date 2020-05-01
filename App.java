@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 class App {
     // instance fields
-    private Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     private static MobilePhone mobilephone = new MobilePhone("09 06 09 06");
 
 
@@ -13,7 +13,27 @@ class App {
         startPhone();
         printActions();
         while (!quit) {
+            System.out.println("\nEnter action: (6 to see the available actions)");
+            int action = scanner.nextInt();
+            scanner.nextLine();
 
+            switch(action){
+                case 0:
+                System.out.println("\nShutting down...");
+                break;
+                case 1:
+                break;
+                case 2:
+                break;
+                case 3:
+                break;
+                case 4:
+                break;
+                case 5:
+                break;
+                case 6:
+                break;
+            }
         }
 
     }
