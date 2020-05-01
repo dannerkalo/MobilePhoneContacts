@@ -70,6 +70,16 @@ class MobilePhone {
          }
          return null;
     }
+
+    // Query contact. (info: method overloading)
+    public PhoneContact queryPhoneContact(String phoneContactName){
+        int position = findPhoneContact(phoneContactName);
+        if(position>0){
+           return this.phoneContact.get(position);
+        }
+        return null;
+   }
+
     // Print/Show contact
     public void printPhoneContacts(){
         System.out.println("Phone-contacts, list.");
