@@ -65,7 +65,7 @@ class App {
         String name = scanner.nextLine();
         PhoneContact existingCountactrecordFound = mobilephone.queryPhoneContact(name);
         if(existingCountactrecordFound == null){
-            System.out.println("Nothing found.");
+            System.out.println("Contact found.");
             return;
         }
 
@@ -80,6 +80,23 @@ class App {
             System.out.println("Error updating record!");
         }
     
+    }
+
+    //remove method
+    private static void removePhoneContact(){
+        System.out.println("Enter existing contact name: ");
+        String name = scanner.nextLine();
+        PhoneContact existingCountactrecordFound = mobilephone.queryPhoneContact(name);
+        if(existingCountactrecordFound == null){
+            System.out.println("Contact found.");
+            return;
+        }
+
+        if(mobilephone.removePhoneContact(existingCountactrecordFound)){
+            System.out.println("Successfully deleted.");
+        }else{
+            System.out.println("Error deleting contact!");
+        }
     }
 
 
