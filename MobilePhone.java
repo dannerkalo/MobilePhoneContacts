@@ -11,11 +11,6 @@ class MobilePhone {
 
     }
 
-    public static void main(String[] args) {
-        // Print App purpose
-        System.out.println("Mobile Phone Contacts management APP");
-    }
-
     /* Instance methods */
 
     // Update/Modify contact
@@ -42,6 +37,15 @@ class MobilePhone {
     }
 
     // Remove/Delete contact
+    public boolean removePhoneContact(PhoneContact removePhoneContact) {
+        int existingPhoneContactFound = findPhoneContact(removePhoneContact);
+        if (existingPhoneContactFound < 0) {
+            System.out.print(removePhoneContact.getContactName() + ", phonecontact couldn't be found!");
+            return false;
+        }
+        this.phoneContact.remove(existingPhoneContactFound);
+        return true;
+    }
     // Search/Find contact by possition. (info: method overloading)
     private int findPhoneContact(PhoneContact findPhoneContactIndexOf) {
 
@@ -57,6 +61,14 @@ class MobilePhone {
             }
         }
         return -1;
+    }
+
+    //Quering on contact
+    public String queryPhoneContact(PhoneContact phoneContact){
+         if(findPhoneContact(phoneContact)>=0){
+            return phoneContact.getPhoneNumber();
+         }
+         return null;
     }
     // Print/Show contact
 }
