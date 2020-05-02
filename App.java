@@ -5,8 +5,6 @@ class App {
     private static Scanner scanner = new Scanner(System.in);
     private static MobilePhone mobilephone = new MobilePhone("09 06 09 06");
 
-
-
     public static void main(String[] args) {
         //
         boolean quit = false;
@@ -45,6 +43,8 @@ class App {
 
     }
 
+   /* instance methods */
+
     //Add new Phone contact
     private static void addNewPhoneContact(){
         System.out.println("Enter new contact name: ");
@@ -65,7 +65,7 @@ class App {
         String name = scanner.nextLine();
         PhoneContact existingCountactrecordFound = mobilephone.queryPhoneContact(name);
         if(existingCountactrecordFound == null){
-            System.out.println("Contact found.");
+            System.out.println("Contact not found to update.");
             return;
         }
 
@@ -88,7 +88,7 @@ class App {
         String name = scanner.nextLine();
         PhoneContact existingCountactrecordFound = mobilephone.queryPhoneContact(name);
         if(existingCountactrecordFound == null){
-            System.out.println("Contact found.");
+            System.out.println("Contact not found to remove.");
             return;
         }
 
@@ -105,14 +105,12 @@ class App {
         String name = scanner.nextLine();
         PhoneContact existingCountactrecordFound = mobilephone.queryPhoneContact(name);
         if(existingCountactrecordFound == null){
-            System.out.println("Contact found.");
+            System.out.println("Contact not found to query.");
             return;
         }
-        System.out.println("Name: " + existingCountactrecordFound.getContactName());
-        System.out.println("Phone number is " + existingCountactrecordFound.getPhoneNumber());
+        System.out.println("Name: " + existingCountactrecordFound.getPhoneContactName());
+        System.out.println("Phone number is " + existingCountactrecordFound.getPhoneContactNumber());
     }
-
-
 
     private static void startPhone() {
         System.out.println("Start phone.....");
@@ -129,7 +127,5 @@ class App {
                            "6 - to print a list of available actions.");
         System.out.println("Choose your action: ");
     }
-
-    // instance methods
 
 }

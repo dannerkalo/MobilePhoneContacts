@@ -3,11 +3,11 @@ import java.util.ArrayList;
 class MobilePhone {
     /* Instance fields */
     private String phoneNumber;
-    private ArrayList<PhoneContact> phoneContact;
+    private ArrayList<PhoneContact> phoneContacts;
 
     public MobilePhone(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        this.phoneContact = new ArrayList<PhoneContact>();
+        this.phoneContacts = new ArrayList<PhoneContact>();
 
     }
 
@@ -17,21 +17,26 @@ class MobilePhone {
     public boolean updatePhoneContact(PhoneContact existingPhoneContact, PhoneContact newPhoneContact) {
         int existingPhoneContactFound = findPhoneContact(existingPhoneContact);
         if (existingPhoneContactFound < 0) {
-            System.out.print(existingPhoneContact.getContactName() + ", has not been found.");
+            System.out.print(existingPhoneContact.getPhoneContactName() + ", has not been found.");
+            return false;
+        } else if(findPhoneContact(newPhoneContact.getPhoneContactName()) != -1){
+            System.out.println("Contact with name " + newPhoneContact.getPhoneContactName());
+            System.out.println(" Already exists. Update was not successful.");
             return false;
         }
-        System.out.print(existingPhoneContact.getContactName() + ", has been replaced with " + newPhoneContact.getContactName());
-        this.phoneContact.set(existingPhoneContactFound, newPhoneContact);
+
+        this.phoneContacts.set(existingPhoneContactFound, newPhoneContact);
+        System.out.print(existingPhoneContact.getPhoneContactName() + ", has been replaced with " + newPhoneContact.getPhoneContactNumber());
         return true;
     }
 
     // Add/Store contact
     public boolean addNewPhoneContact(PhoneContact newPhoneContact) {
-        if (findPhoneContact(newPhoneContact.getContactName()) >= 0) {
+        if (findPhoneContact(newPhoneContact.getPhoneContactNumber()) >= 0) {
             System.out.print("Phone-contact already exist!");
             return false;
         }
-        phoneContact.add(newPhoneContact);
+        phoneContacts.add(newPhoneContact);
         return true;
 
     }
@@ -40,23 +45,23 @@ class MobilePhone {
     public boolean removePhoneContact(PhoneContact removePhoneContact) {
         int existingPhoneContactFound = findPhoneContact(removePhoneContact);
         if (existingPhoneContactFound < 0) {
-            System.out.print(removePhoneContact.getContactName() + ", phonecontact couldn't be found!");
+            System.out.print(removePhoneContact.getPhoneContactName() + ", phonecontact couldn't be found!");
             return false;
         }
-        this.phoneContact.remove(existingPhoneContactFound);
+        this.phoneContacts.remove(existingPhoneContactFound);
         return true;
     }
     // Search/Find contact by possition. (info: method overloading)
     private int findPhoneContact(PhoneContact findPhoneContactIndexOf) {
 
-        return this.phoneContact.indexOf(findPhoneContactIndexOf);
+        return this.phoneContacts.indexOf(findPhoneContactIndexOf);
     }
 
     // Search/Find contact by name. (info: method overloading)
     private int findPhoneContact(String findPhoneContactName) {
-        for (int i = 0; i < this.phoneContact.size(); i++) {
-            PhoneContact findPhoneContactNamePosition = this.phoneContact.get(i);
-            if (findPhoneContactNamePosition.getContactName().equals(findPhoneContactName)) {
+        for (int i = 0; i < this.phoneContacts.size(); i++) {
+            PhoneContact findPhoneContactNamePosition = this.phoneContacts.get(i);
+            if (findPhoneContactNamePosition.getPhoneContactName().equals(findPhoneContactName)) {
                 return i;
             }
         }
@@ -66,7 +71,7 @@ class MobilePhone {
     //Quering on contact
     public String queryPhoneContact(PhoneContact phoneContact){
          if(findPhoneContact(phoneContact)>=0){
-            return phoneContact.getPhoneNumber();
+            return phoneContact.getPhoneContactNumber();
          }
          return null;
     }
@@ -74,8 +79,9 @@ class MobilePhone {
     // Query contact. (info: method overloading)
     public PhoneContact queryPhoneContact(String phoneContactName){
         int position = findPhoneContact(phoneContactName);
-        if(position>0){
-           return this.phoneContact.get(position);
+        //
+        if(position >=0){
+           return this.phoneContacts.get(position);
         }
         return null;
    }
@@ -83,10 +89,10 @@ class MobilePhone {
     // Print/Show contact
     public void printPhoneContacts(){
         System.out.println("Phone-contacts, list.");
-        for(int i =0; i < this.phoneContact.size(); i++){
+        for(int i =0; i < this.phoneContacts.size(); i++){
             System.out.println(i+1 + ". " + 
-                                this.phoneContact.get(i).getContactName() + " => " + 
-                                this.phoneContact.get(i).getPhoneNumber());
+                                this.phoneContacts.get(i).getPhoneContactName() + " => " + 
+                                this.phoneContacts.get(i).getPhoneContactNumber());
         }
     }
 }

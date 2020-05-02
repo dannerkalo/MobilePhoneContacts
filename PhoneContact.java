@@ -10,13 +10,13 @@ class PhoneContact {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getContactName() {
+    public String getPhoneContactName() {
 
         return contactName;
 
     }
 
-    public String getPhoneNumber() {
+    public String getPhoneContactNumber() {
 
         return phoneNumber;
 
