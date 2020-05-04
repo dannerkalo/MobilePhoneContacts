@@ -36,6 +36,7 @@ class MobilePhone {
             System.out.print("Phone-contact already exist!");
             return false;
         }
+
         phoneContacts.add(newPhoneContact);
         return true;
 

@@ -1,9 +1,11 @@
 import java.util.Scanner;
+import java.lang.String;
 
 class App {
     // instance fields
     private static Scanner scanner = new Scanner(System.in);
     private static MobilePhone mobilephone = new MobilePhone("09 06 09 06");
+    private static int counter = 0;
 
     public static void main(String[] args) {
         //
@@ -48,16 +50,25 @@ class App {
     //Add new Phone contact
     private static void addNewPhoneContact(){
         System.out.println("Enter new contact name: ");
-        String name = scanner.nextLine();
+        String name = validatePhoneContactName(scanner.nextLine());
         System.out.println("Enter phone number: ");
-        String phone = scanner.nextLine();
+        String phone = validatePhoneNumber(scanner.nextLine());
+
+        //
         PhoneContact newPhoneContact = PhoneContact.createPhoneContact(name, phone);
-        if(mobilephone.addNewPhoneContact(newPhoneContact)){
+        if((phone != null && name != null) && mobilephone.addNewPhoneContact(newPhoneContact)){
             System.out.println("New contact added: Name = " + name + ", & Phone: " + phone);
         }else{
             System.out.println("Unable to add this: Name = " + name + " and Phone = " + phone);
         }
+       if(counter != 3){
+        counter++;  
+        System.out.println( counter + " - Name should be at least 3 charachtes long and not longer than 15 charachters.");
+        System.out.println(" - Phonenumber should be 10 charachtes long.");
+        addNewPhoneContact();
+        }
     }
+    
 
     //Update if contact exists 
     private static void updatePhoneContact(){
@@ -99,7 +110,7 @@ class App {
         }
     }
 
-    //remove method
+    //Query contact info method
     private static void queryPhoneContact(){
         System.out.println("Enter existing contact name: ");
         String name = scanner.nextLine();
@@ -111,6 +122,25 @@ class App {
         System.out.println("Name: " + existingCountactrecordFound.getPhoneContactName());
         System.out.println("Phone number is " + existingCountactrecordFound.getPhoneContactNumber());
     }
+
+
+            //Validate contact name
+       private static String validatePhoneContactName(String phoneContactName){
+        //
+        if((phoneContactName.length() > 2) && (phoneContactName.length() < 15)){   
+          return phoneContactName;
+        }
+        return null;
+      }
+
+       //Validate phonenumber
+       private static String validatePhoneNumber(String phonenContactNumber){
+        //
+        if(phonenContactNumber.length() == 10){ 
+          return phonenContactNumber;
+        }
+        return null;
+      }
 
     private static void startPhone() {
         System.out.println("Start phone.....");
